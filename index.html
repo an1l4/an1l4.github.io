@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Anila Soman | Golang Backend Engineer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#070b14;
+    --card:rgba(255,255,255,0.05);
+    --border:rgba(255,255,255,0.08);
+    --text:#ffffff;
+    --secondary:#a1a1aa;
+    --accent:#6366f1;
+}
+
+.light{
+    --bg:#f5f7fb;
+    --card:rgba(255,255,255,0.95);
+    --border:rgba(0,0,0,0.06);
+    --text:#0f172a;
+    --secondary:#475569;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.3s ease;
+    overflow-x:hidden;
+}
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+}
+
+.glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.15;
+}
+
+.glow1{
+    background:#6366f1;
+    top:-100px;
+    left:-100px;
+}
+
+.glow2{
+    background:#06b6d4;
+    right:-100px;
+    bottom:-100px;
+}
+
+.container{
+    width:min(1150px,92%);
+    margin:auto;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:30px 0;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:var(--secondary);
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    color:var(--text);
+}
+
+.theme-btn{
+    border:none;
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--border);
+    padding:12px 18px;
+    border-radius:14px;
+    cursor:pointer;
+}
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 20px;
+    border-radius:999px;
+    background:var(--card);
+    border:1px solid var(--border);
+    margin-bottom:30px;
+    color:var(--secondary);
+}
+
+h1{
+    font-size:clamp(60px,9vw,110px);
+    line-height:.95;
+    letter-spacing:-5px;
+    margin-bottom:25px;
+}
+
+.gradient{
+    background:linear-gradient(
+    90deg,
+    #6366f1,
+    #06b6d4
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:750px;
+    color:var(--secondary);
+    font-size:22px;
+    line-height:1.8;
+    margin-bottom:40px;
+}
+
+.buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:18px 28px;
+    border-radius:18px;
+    font-weight:600;
+    text-decoration:none;
+    transition:.25s ease;
+}
+
+.primary{
+    background:linear-gradient(
+    90deg,
+    #6366f1,
+    #06b6d4
+    );
+    color:white;
+}
+
+.secondary{
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--border);
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-top:80px;
+}
+
+.stat-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:30px;
+    backdrop-filter:blur(30px);
+}
+
+.stat-card h2{
+    font-size:42px;
+}
+
+.stat-card p{
+    color:var(--secondary);
+}
+
+section{
+    padding:120px 0;
+}
+
+.section-title{
+    font-size:52px;
+    margin-bottom:50px;
+    letter-spacing:-2px;
+}
+
+.timeline{
+    border-left:2px solid var(--border);
+    padding-left:40px;
+}
+
+.timeline-item{
+    margin-bottom:50px;
+    position:relative;
+}
+
+.timeline-item::before{
+    content:"";
+    position:absolute;
+    left:-49px;
+    top:10px;
+    width:18px;
+    height:18px;
+    background:#6366f1;
+    border-radius:50%;
+}
+
+.timeline-item h3{
+    font-size:24px;
+}
+
+.company{
+    color:#818cf8;
+    margin:10px 0;
+}
+
+.timeline-item p{
+    color:var(--secondary);
+    line-height:1.8;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:30px;
+    padding:35px;
+    transition:.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card h3{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:var(--secondary);
+    line-height:1.8;
+}
+
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+}
+
+.skill{
+    padding:14px 20px;
+    border-radius:999px;
+    background:var(--card);
+    border:1px solid var(--border);
+}
+
+.contact{
+    text-align:center;
+}
+
+.contact h2{
+    font-size:52px;
+    margin-bottom:20px;
+}
+
+.contact p{
+    color:var(--secondary);
+    margin-bottom:30px;
+}
+
+.socials{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+.socials a{
+    text-decoration:none;
+    color:var(--text);
+    background:var(--card);
+    padding:18px 22px;
+    border-radius:18px;
+    border:1px solid var(--border);
+}
+
+footer{
+    text-align:center;
+    padding:60px 0;
+    color:var(--secondary);
+}
+
+@media(max-width:900px){
+
+.stats{
+grid-template-columns:1fr 1fr;
+}
+
+.nav-links{
+display:none;
+}
+
+h1{
+letter-spacing:-2px;
+}
+
+.hero{
+padding:80px 0;
+min-height:auto;
+}
+}
+
+@media(max-width:600px){
+
+.stats{
+grid-template-columns:1fr;
+}
+
+.section-title{
+font-size:38px;
+}
+
+.hero p{
+font-size:18px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+</div>
+
+<div class="container">
+
+<nav>
+    <div class="logo">AN1L4</div>
+
+    <div class="nav-links">
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <button class="theme-btn" onclick="toggleTheme()">
+        🌗 Theme
+    </button>
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+    Backend Engineer • 4+ Years Experience
+</div>
+
+<h1>
+Building scalable
+<span class="gradient">
+backend systems
+</span>
+with Go.
+</h1>
+
+<p>
+Golang Backend Engineer specialized in scalable APIs,
+distributed systems, Kafka, AWS, PostgreSQL,
+workflow automation, and production-grade backend architecture.
+</p>
+
+<div class="buttons">
+<a href="#projects" class="btn primary">
+View Projects
+</a>
+
+<a href="#" class="btn secondary">
+Download Resume
+</a>
+</div>
+
+<div class="stats">
+
+<div class="stat-card">
+<h2>4+</h2>
+<p>Years Experience</p>
+</div>
+
+<div class="stat-card">
+<h2>Go</h2>
+<p>Backend Systems</p>
+</div>
+
+<div class="stat-card">
+<h2>AWS</h2>
+<p>Cloud & Microservices</p>
+</div>
+
+<div class="stat-card">
+<h2>Kafka</h2>
+<p>Event-Driven Systems</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="experience">
+<h2 class="section-title">
+Experience
+</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<h3>Software Engineer</h3>
+<div class="company">
+BootLabs • 2024 — Present
+</div>
+<p>
+Built scalable backend systems using Go, AWS,
+PostgreSQL, workflow automation, and
+event-driven architectures.
+</p>
+</div>
+
+<div class="timeline-item">
+<h3>Software Developer</h3>
+<div class="company">
+Intelops • 2022 — 2024
+</div>
+<p>
+Developed scalable backend APIs,
+monitoring systems, observability tooling,
+and performance improvements.
+</p>
+</div>
+
+<div class="timeline-item">
+<h3>Assistant Engineer</h3>
+<div class="company">
+Ericsson • 2019 — 2022
+</div>
+<p>
+Worked on telecom systems troubleshooting,
+technical operations, and production reliability.
+</p>
+</div>
+
+</div>
+</section>
+
+<section id="projects">
+
+<h2 class="section-title">
+Featured Projects
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Ticketing Automation Platform</h3>
+<p>
+Built a one-click workflow automation system
+using Golang, GORM, email automation,
+and third-party integrations.
+</p>
+</div>
+
+<div class="card">
+<h3>Kafka Event Monitoring</h3>
+<p>
+Designed a scalable real-time monitoring system
+using Kafka for event-driven processing.
+</p>
+</div>
+
+<div class="card">
+<h3>RAG Multi-Modal Chatbot</h3>
+<p>
+Built an AI chatbot with PDF retrieval,
+voice processing, and contextual search.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="skills">
+
+<h2 class="section-title">
+Tech Stack
+</h2>
+
+<div class="skills">
+
+<div class="skill">Go</div>
+<div class="skill">Gin</div>
+<div class="skill">Fiber</div>
+<div class="skill">Kafka</div>
+<div class="skill">AWS</div>
+<div class="skill">PostgreSQL</div>
+<div class="skill">Redis</div>
+<div class="skill">MongoDB</div>
+<div class="skill">Docker</div>
+<div class="skill">Kubernetes</div>
+<div class="skill">Microservices</div>
+<div class="skill">System Design</div>
+<div class="skill">RAG</div>
+<div class="skill">LLMs</div>
+
+</div>
+
+</section>
+
+<section id="contact" class="contact">
+
+<h2>
+Let's Build Something Great
+</h2>
+
+<p>
+Open to backend engineering opportunities
+and scalable system challenges.
+</p>
+
+<div class="socials">
+<a href="mailto:1995anila@gmail.com">Email</a>
+<a href="https://github.com/an1l4">GitHub</a>
+<a href="https://linkedin.com/in/an1l4">LinkedIn</a>
+</div>
+
+</section>
+
+<footer>
+© 2026 Anila Soman • Bangalore, India
+</footer>
+
+</div>
+
+<script>
+function toggleTheme(){
+document.body.classList.toggle("light");
+}
+</script>
+
+</body>
+</html>
